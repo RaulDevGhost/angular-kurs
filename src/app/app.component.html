@@ -1,48 +1,19 @@
-<div class="box" (scroll)="onScroll($event)">
-  <h1>{{ "Functions Interpolation".repeat(2) }}</h1>
-  <div *ngFor="let emoji of emojis; index as i">
-    <p>{{ i }} - {{ emoji }}</p>
-  </div>
-  <input
-    type="text"
-    [(ngModel)]="inputValue"
-    #nameInput="ngModel"
-    required
-    (ngModelChange)="inputValue ? (btnDisable = false) : (btnDisable = true)"
-  />
-  <button [disabled]="btnDisable" (click)="testIt()">Test it</button>
-  <input
-    type="number"
-    [(ngModel)]="inputAge"
-    #ageInput="ngModel"
-    max="100"
-    min="18"
-    required
-  />
-  <br />
-  <progress max="100" [value]="progressValue"></progress>
-  <p>Progress: {{ progressValue }}</p>
-  <p>Value: {{ inputValue }}</p>
-  <br />
-  <img
-    *ngIf="ageInput.valid && nameInput.valid; else myBlock"
-    [src]="image"
-    alt=""
-    width="350"
-  />
-  <ng-template #myBlock>
-    <p>For showing the image please add a valid name and a valid age</p>
-  </ng-template>
-  <p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo enim
-    consectetur quidem sequi officia et eum deserunt, suscipit est distinctio
-    porro. Recusandae officia deserunt rem ad praesentium a, nesciunt illo?
-  </p>
-  <input type="text" (keyup)="testKeyUp($event)" />
-  <h1>*ngFor Objs</h1>
-  <div *ngFor="let product of products">
-    <img [src]="product.image" width="250" alt="" />
-    <p>{{ product.price }}</p>
-    <p>{{ product.category }}</p>
-  </div>
-</div>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+        >home</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/form"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >form</a
+      >
+    </li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

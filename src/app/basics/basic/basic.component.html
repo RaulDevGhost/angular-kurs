@@ -1,0 +1,110 @@
+<div class="box" (scroll)="onScroll($event)">
+  <h1>{{ "Functions Interpolation".repeat(2) }}</h1>
+  <div *ngFor="let emoji of emojis; index as i">
+    <p>{{ i }} - {{ emoji }}</p>
+  </div>
+  <div>
+    <h1>Style dynamic / variable</h1>
+    <div>
+      <input type="number" [(ngModel)]="widthImg" />
+    </div>
+    <div>
+      <img [style.width.%]="widthImg" [src]="icelandImg" alt="Iceland" />
+    </div>
+  </div>
+  <br />
+  <input
+    type="text"
+    [(ngModel)]="inputValue"
+    #nameInput="ngModel"
+    required
+    (ngModelChange)="inputValue ? (btnDisable = false) : (btnDisable = true)"
+  />
+  <button [disabled]="btnDisable" (click)="testIt()">Test it</button>
+  <!--DYNAMIC CLASSES-->
+  <p class="message--error" [class.invalid]="nameInput.invalid">
+    The input is empty
+  </p>
+  <!--NGSWITCH-->
+  <h1>ngSwitch</h1>
+  <div [ngSwitch]="inputValue">
+    <p *ngSwitchCase="'Raul'">It shows because the name is Raul</p>
+    <p *ngSwitchDefault>ngSwitchDefault Name Input !== Raul</p>
+  </div>
+  <!--END NGSWITCH-->
+  <input
+    type="number"
+    [(ngModel)]="inputAge"
+    #ageInput="ngModel"
+    max="100"
+    min="18"
+    required
+  />
+  <p [style.font-style]="ageInput.invalid ? 'italic' : 'normal'">
+    CHNAGING THE STYLE DIRECT / BINDING based on the age valid input. Italic is
+    invalid
+  </p>
+  <!--NGCLASS-->
+  <div
+    class="line-error"
+    [ngClass]="{
+      'valid-line': !nameInput.invalid && !ageInput.invalid,
+      'invalid-line': nameInput.invalid && ageInput.invalid
+    }"
+  ></div>
+  <!--END NGCLASS-->
+  <!--NGSWITCH-->
+  <h1>ngSwitch</h1>
+  <div [ngSwitch]="inputAge">
+    <p *ngSwitchCase="18">It shows because the age is 18</p>
+    <p *ngSwitchDefault>ngSwitchDefault AGE !== 18</p>
+  </div>
+  <!--END NGSWITCH-->
+  <div class="styles">
+    <div>
+      <input type="number" [(ngModel)]="box.width" />
+      <input type="number" [(ngModel)]="box.height" />
+      <input type="color" [(ngModel)]="box.background" />
+    </div>
+    <div>
+      <div
+        [ngStyle]="{
+          'width.px': box.width,
+          'height.px': box.height,
+          'background-color': box.background,
+          display: 'block'
+        }"
+      ></div>
+    </div>
+  </div>
+  <br />
+  <progress max="100" [value]="progressValue"></progress>
+  <p>Progress: {{ progressValue }}</p>
+  <p>Value: {{ inputValue }}</p>
+  <br />
+  <img
+    *ngIf="ageInput.valid && nameInput.valid; else myBlock"
+    [src]="image"
+    alt=""
+    width="350"
+  />
+  <ng-template #myBlock>
+    <p>For showing the image please add a valid name and a valid age</p>
+  </ng-template>
+  <p>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo enim
+    consectetur quidem sequi officia et eum deserunt, suscipit est distinctio
+    porro. Recusandae officia deserunt rem ad praesentium a, nesciunt illo?
+  </p>
+  <input type="text" (keyup)="testKeyUp($event)" />
+  <h1>*ngFor Objs</h1>
+  <div class="products--grid">
+    <div *ngFor="let product of products">
+      <img [src]="product.image" alt="" />
+      <h2>{{ product.name }}</h2>
+      <p>Price: {{ product.price }}</p>
+      <p>{{ product.category }}</p>
+    </div>
+  </div>
+</div>
+ƒ
